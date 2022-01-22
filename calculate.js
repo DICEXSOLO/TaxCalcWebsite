@@ -4,7 +4,16 @@ function calculate(){
     var taxDue;
     var nationalInsurance;
     var takeHomePay;
+    var takeHomePayM;
     var taxableIncome = grossIncome - personalAllowance;
+    var formatter = new Intl.NumberFormat('en-UK', {
+        style: 'currency',
+        currency: 'GBP',
+      
+        // These options are needed to round to whole numbers if that's what you want.
+        minimumFractionDigits: 0, // (this suffices for whole numbers, but will print 2500.10 as $2,500.1)
+        //maximumFractionDigits: 0, // (causes 2500.99 to be printed as $2,501)
+      });
 
     if (taxableIncome<125140){
         taxableIncome = grossIncome - personalAllowance;
@@ -23,12 +32,23 @@ nationalInsurance = 0;
     } else if (grossIncome>9568 && grossIncome<50284){
         nationalInsurance = (grossIncome-9568) * 0.12;
     } else if (grossIncome > 50284){
-        grossIncome = grossIncome - 9568;
-        nationalInsurance = (40716 * 0.12) + ((grossIncome - 40716)*0.02);
+        var grossIncome1 = grossIncome - 9568;
+        nationalInsurance = (40716 * 0.12) + ((grossIncome1 - 40716)*0.02);
     }
 
 takeHomePay= grossIncome - taxDue - nationalInsurance;
+takeHomePayM = (takeHomePay / 12);
 
-alert("Your take home pay is: £" + takeHomePay);
+
+document.getElementById("tHP").innerHTML = formatter.format(takeHomePay);
+document.getElementById("tHPM").innerHTML = formatter.format(takeHomePayM);
+document.getElementById("iT").innerHTML = formatter.format(taxDue);
+document.getElementById("nI").innerHTML = formatter.format(nationalInsurance);
+document.getElementById("gI").innerHTML = formatter.format(grossIncome);
+var x = document.getElementById("results-container");
+x.style.display = (x.style.display == 'block') ? 'none' : 'block';
+//alert("Your take home pay is: £" + takeHomePay);
 }
+
+
 
