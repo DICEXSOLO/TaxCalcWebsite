@@ -33,12 +33,23 @@
 					<center><input type="text" id="income" income="income" placeholder="Enter your Gross Income" /></center>
 					<small></small>
 				</div>
-				</div>
+				</div>	
 				<div class="field">
-					<center><button class="button" onclick="calculate()">Calculate</button></center>
+					<center><button class="button" onclick="calculate()";>Calculate</button></center>
 				</div>
-				
-				  
+			
+				<div id="results-container" style="display: none;">
+					<div class="summary">
+						<p><center><strong>SUMMARY</p></strong>
+						<p> 
+							In making <span id="gI"></span> you will take home <span id="tHP"></span> . Which eqautes to <span id="tHPM"></span> in your pocket every month.
+						</p>
+						<p></p>
+						<p>For the year you will end up paying <span id="iT"></span> in income tax and <span id="nI"></span> in National insurance.</p>
+					</center>
+				</div>
+				</div>
+
 
 
     </body>
